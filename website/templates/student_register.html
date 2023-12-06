@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+
+
+    <section class="home">
+        <div class="form_container">
+                <div class="form login_form">
+                    <form action="/student_register" method="POST">
+                        <h2>Student SignUp</h2>
+                        {{ form.hidden_tag() }}
+                        <div class="input_box">
+                            {{ form.name(class="flask_form") }}
+                            <i class="uil uil-envelope-alt email"></i>
+                        </div>
+                        <div class="input_box">
+                        {{ form.room_no(class="flask_form") }}
+                        </div>
+                        <div class="input_box">
+                            {{ form.username(class="flask_form") }}
+                            </div>
+                        <div class="input_box">
+                            {{ form.password(class="flask_form") }}
+                            <i class="uil uil-lock password"></i>
+                            <i class="uil uil-eye-slash pw_hide"></i>
+                        </div>
+                        <button class="button" id="form-open">Create Account</button>
+        
+                        <div class="login_signup">Already have an account? <a href="{{url_for('auth.student_login')}}" id="signup">LogIn</a></div>
+                    </form>
+                </div>
+        </div>
+    </section>
+
+{% endblock %}

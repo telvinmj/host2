@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block body %}
+<header class="header">
+    <nav class="nav">
+
+        {%block modify %}
+
+        {% endblock %}
+        
+        <a href="index.html" class="home_btn">Login</a>
+
+        
+
+
+    </nav>
+</header>
+
+
+<img src="/static/logo2.png" class =home_logo >
+
+
+
+<p id="home_heading" style=" position: absolute;top:14%; left: 35%">Welcome to Hostelp </p> 
+
+
+
+<div id="homify" class="container">
+    <li>
+    <p>Your Platform for Hassle-Free Complaint Management</p>
+   
+    </li>
+    <li>
+    <p >Complaint Registration Made Easy</p>
+       
+    </li>
+    <li>
+        <p>Efficient Work Assignment</p>
+    </li>
+    
+    <li>   
+    <p>Say goodbye to communication gaps!</p>
+        
+    </li>
+</div>
+
+{% endblock %}

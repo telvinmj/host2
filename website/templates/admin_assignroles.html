@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<dashboard>
+
+    <form method="POST" , action ="/admin_assignroles">
+        <div >
+
+            <div class="responsive-table">
+                <h2>Assign Floors</h2>
+
+              <li class="table-header">
+                <div class="col" style="flex-basis: 30% "> <th>work</th> </div>
+                <div class="col" style="flex-basis: 30%">Employee Name</div>
+                <div class="col" style="flex-basis: 20%">FROM</div>
+                <div class="col" style="flex-basis: 20%"> <th>TO</th> </div>
+              </li>
+                {% for maintenance_type in maintenance_types %}
+                        {% for entity in employee %}
+                                {% if entity.work ==  maintenance_type %}
+                                <li class="table-row">
+                                    <div class="col" style="flex-basis: 30%" >{{ maintenance_type }}</div>
+                                    <div class="col"style="flex-basis: 30%">{{ entity.user.name }}</div>
+                                    <div class="col" style="flex-basis: 20%; display: flex; justify-content: center;" >
+                                        <select id="{{ entity.name }}_first_select" name="{{ entity.name }}_first_select" class="form-select" style="width: 100px;" onchange="set_second(this, '{{ entity.name }}')">
+                                            {% for i in range(19) %}
+                                                <option  value="{{ i }}" >{{ i }}</option> 
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col" style="flex-basis: 20%; display: flex; justify-content: center">
+                                        <select id="{{ entity.name }}_second_select" name="{{ entity.name }}_second_select"  class="form-select" style="width: 100px;">
+                                            {% for j in range(19) %}
+                                                <option value="{{ j }}">{{ j }}</option> 
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                {% endfor %}
+                <div>
+                <input type="submit" value="submit" class="assign_role_btn">
+                </div>
+                <br>
+                <br>
+                <div style="display: flex; justify-content: space-evenly">
+                    <a href="{{url_for('auth.logout')}}">Press here to logout</a>
+                    <a href="{{ url_for('views.admin_dashboard') }}">Press here for active complaints</a>
+                </div>
+                
+                  
+            </div>
+    
+        
+        </div>
+            
+        
+    </form>
+
+        
+          
+</dashboard>
+    
+
+{% endblock %}

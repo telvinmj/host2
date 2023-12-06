@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+<dashboard>
+    <div class="responsive-table">
+        <h2>Active Complaints</h2>
+        <li class="table-header">
+            <div class="col col-3">Complaint Type</div>
+            <div class="col col-1">Student Name</div>
+            <div class="col col-3">Room No</div>
+            <div class="col col-1">Description</th> </div>
+          </li>
+
+        <h3>{{ no_task }}</h3>
+
+        {% for log in logbook %}
+            {% if (log.room_no|int)/100 >= min and (log.room_no|int)/100 <= max and log.maintenance_type == work %}
+
+            <li class="table-row">
+                <div class="col col-3" data-label="Complaint Type">{{ log.maintenance_type }}</div>
+                <div class="col col-1" data-label="Student Name">{{ log.user.name }}</div>
+                <div class="col col-3" data-label="Room No">{{ log.room_no }}</div>
+                <div class="col col-1" data-label="Description">{{ log.data }}</div>
+            </li>
+            {% endif %}
+        {% endfor %}
+
+        <div>
+            <a href="{{url_for('auth.logout')}}">Press here to logout</a>
+        </div>
+        
+          
+    </div>
+</dashboard>
+    
+
+{% endblock %}

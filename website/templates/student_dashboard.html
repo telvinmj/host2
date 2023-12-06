@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+
+<dashboard>
+    <div class="container">
+        
+        
+
+        <form method="POST" , action ="/student_dashboard">
+
+            <div>
+                <select name="my-select" class="form-select" >
+                    <option value="Room Cleaning">Room Cleaning</option>
+                    <option value="Room Electric Work">Room Electric Work</option>
+                    <option value="Bathroom Maintenance">Bathroom Maintenance</option> 
+                </select>
+            
+                <h4>Description</h4>
+                <textarea name="complaint" id="complaint" class="md-textarea form-control" rows="1"></textarea>
+              <button type="submit" class="btn btn-primary">Add Complaint</button>
+            </div>
+        </form>
+        <h2>COMPLAINTS</h2>
+        <div class="responsive-table">
+          <li class="table-header">
+            <div class="col col-1">Name</div>
+            <div class="col col-2">Complaint Type</div>
+            <div class="col col-3"> <th>Description</th> </div>
+            <div class="col col-4"> <th>Task</th> </div>
+          </li>
+            {% for note in user.log %}
+            <li class="responsive-table table-row" id="notes">
+                <div class="col col-1" data-label="Job Id">{{ user.name }}</div>
+                <div class="col col-2" data-label="Job Id">{{ note.maintenance_type}}</div>
+                <div class="col col-3" data-label="Job Id">{{ note.data }}</div>
+                <div> <a href="{{ url_for('views.delete_note',id=note.id) }}"  class="btn btn-primary col">Done</a> </div>
+                  </li>
+            </li>
+            {% endfor %}
+              
+        </div>
+        <a href="{{url_for('auth.logout')}}">Press here to logout</a>
+          
+        </ul>
+      </div>
+
+</dashboard>
+
+
+{% endblock %}
